@@ -19,6 +19,7 @@ public class Game
 {
     private Parser parser;
     private Room currentRoom;
+    private Jogador jogador;
         
     /**
      * Create the game and initialise its internal map.
@@ -27,6 +28,7 @@ public class Game
     {
         createRooms();
         parser = new Parser();
+        jogador = new Jogador();
     }
 
     /**
@@ -114,6 +116,10 @@ public class Game
             case GO:
                 goRoom(command);
                 break;
+            
+            case ABRIR:
+                abrirBau();
+                break;
 
             case QUIT:
                 wantToQuit = quit(command);
@@ -162,6 +168,10 @@ public class Game
             currentRoom = nextRoom;
             System.out.println(currentRoom.getLongDescription());
         }
+    }
+
+    private void abrirBau(){
+        Item tesouro = currentRoom.abrirTesouro(jogador.getInventario());
     }
 
     /** 

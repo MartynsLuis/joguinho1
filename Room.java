@@ -40,7 +40,7 @@ public class Room
     public Room(String description) 
     {
         this.description = description;
-        tesouro = new CaixaDeTesouro(null, null);
+        tesouro = null;
         itensSala = new HashMap<>();
         exits = new HashMap<>();
     }
@@ -99,6 +99,30 @@ public class Room
     public Room getExit(String direction) 
     {
         return exits.get(direction);
+    }
+
+    public Item abrirTesouro(HashMap<String,Item> inventario){
+        boolean bauAberto = tesouro.destrancarBau(inventario);
+        if(bauAberto){
+            Item itemTesouro = getTesouroBau();
+            System.out.println("Você abriu " + tesouro.getDescricao());
+            System.out.println("Dentro havia" + itemTesouro.getDescricao());
+            return itemTesouro;
+        }
+        else{
+            System.out.println("Parece que precisa de uma chave para abrir");
+            return null;
+        }
+    }
+
+    public String getChaveBau(){
+        String chave = tesouro.getChave();
+        return chave;
+    }
+
+    private Item getTesouroBau(){
+        Item tesouroBau = tesouro.getTesouro();
+        return tesouroBau;
     }
 }
 

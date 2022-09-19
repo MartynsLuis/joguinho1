@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class CaixaDeTesouro {
     private String descricao;
     private String chave;
@@ -9,15 +11,25 @@ public class CaixaDeTesouro {
         this.tesouro = new Item("Comida");
     }
 
-    public void getDescircao(){
-        System.out.println(descricao);
+    public String getDescricao(){
+        return descricao;
     }
 
     public Item getTesouro(){
         return tesouro;
     }
 
-    public String getChava(){
+    public String getChave(){
         return chave;
+    }
+
+    public boolean destrancarBau(HashMap<String,Item> inventarioJogador){
+        for(String key : inventarioJogador.keySet()){
+            if(key == chave){
+                return true;
+            }
+        }
+        return false;
+
     }
 }

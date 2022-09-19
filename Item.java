@@ -5,7 +5,7 @@ public class Item {
         this.descricao = descricao;
     }
 
-    public void getDescricao(){
-        System.out.println(descricao);
+    public String getDescricao(){
+        return descricao;
     }
 }

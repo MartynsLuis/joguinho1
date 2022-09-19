@@ -1,9 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class Jogador {
     private int vida;
-    private ArrayList<String> inventario;
+    private HashMap<String,Item> inventario;
 
     public Jogador(){
         vida = 100;
@@ -14,7 +14,20 @@ public class Jogador {
         vida -= dano;
     }
 
-    public boolean encontrarItem(String item){
-        return true;
+    public HashMap<String,Item> getInventario(){
+        return inventario;
+    }
+
+    public void removerDoInventario(String keyItem){
+        for(String key : new HashSet<>(inventario.keySet())){
+            if(key == keyItem){
+                inventario.remove(keyItem);
+                break;
+            }
+        }
+    }
+
+    public void removerDoInventario2(String keyItem){
+        inventario.remove(keyItem);
     }
 }
